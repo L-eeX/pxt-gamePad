@@ -137,7 +137,7 @@ namespace gamePad {
     }
 
     //% weight=50
-    //% blockId=gamePad_vibratorMotor block="Vibrator motor|%index|"
+    //% blockId=gamePad_vibratorMotor block="Vibrator motor switch|%index|"
     //% index.fieldEditor="gridpicker" index.fieldOptions.columns=1
     export function vibratorMotor(index: Vibrator): void {
         switch (index) { 
@@ -190,7 +190,7 @@ namespace gamePad {
     }
 
     //% weight=20
-    //% blockId=gamePad_led block="LED |%index|"
+    //% blockId=gamePad_led block="LED switch|%index|"
     //% index.fieldEditor="gridpicker" index.fieldOptions.columns=1
     export function led(index: Led): void {
         pins.setPull(DigitalPin.P16, PinPullMode.PullUp);
