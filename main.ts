@@ -36,9 +36,9 @@ enum GamerBitEvent {
 //% weight=10 color=#FFB400 icon="\uf286" block="gamePad"
 namespace gamePad { 
     export enum Vibrator { 
-        //% blockId="V0" block="停止"
+        //% blockId="V0" block="stop"
         V0 = 0,
-        //% blockId="V1" block="震动"
+        //% blockId="V1" block="Vibration"
         V1 = 1,     
     }
 

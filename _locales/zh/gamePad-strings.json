@@ -1,4 +1,6 @@
 {
-	"gamePad.vibratorMotor|block": "震动电机|%index|",
+	"gamePad.Vibrator.V0|block": "停止",
+	"gamePad.Vibrator.V1|block": "震动",
+	"gamePad.vibratorMotor|block": "震动电机 开关|%index|",
 	"gamePad.vibratorMotorIntensity|block": "震动电机 强度|%index|"
 }
