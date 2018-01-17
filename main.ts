@@ -33,7 +33,7 @@ enum GamerBitEvent {
 /**
  * Functions to operate the SparkFun gamer:bit
  */
-//% weight=10 color=#FFB400 icon="\uf286" block="gamePad"
+//% weight=10 color=#DF6721 icon="\uf286" block="gamePad"
 namespace gamePad { 
     export enum Vibrator { 
         //% blockId="V0" block="stop"
