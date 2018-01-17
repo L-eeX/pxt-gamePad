@@ -43,20 +43,20 @@ namespace gamePad {
     }
 
     export enum Intensity { 
-        //% blockId="I0" block="停止"
+        //% blockId="I0" block="stop"
         I0 = 0,
-        //% blockId="I1" block="弱"
+        //% blockId="I1" block="weak"
         I1 = 1,
-        //% blockId="I2" block="中"
+        //% blockId="I2" block="medium"
         I2 = 2,
-        //% blockId="I3" block="强"
+        //% blockId="I3" block="strong"
         I3 = 3
     }
 
     export enum Led {
-        //% blockId="OFF" block="灭"
+        //% blockId="OFF" block="off"
         OFF = 0,
-        //% blockId="ON" block="亮"
+        //% blockId="ON" block="on"
         ON = 1
     }
 
@@ -180,7 +180,7 @@ namespace gamePad {
 
     //% weight=30
     //% blockGap=50
-    //% blockId=gamePad_vibratorMotorSpeed block="Vibrator motor speed|intension %degree"
+    //% blockId=gamePad_vibratorMotorSpeed block="Vibrator motor speed|%degree"
     //% degree.min=0 degree.max=255
     export function vibratorMotorSpeed(degree: number): void {
         pins.setPull(DigitalPin.P0, PinPullMode.PullUp);
