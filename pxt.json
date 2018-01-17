@@ -10,7 +10,8 @@
     "files": [
         "README.md",
         "gamerpad.cpp",
-        "main.ts"
+        "main.ts",
+        "_locales/ch/gamePad-strings.json"
     ],
     "testFiles": [
         "test.ts"
