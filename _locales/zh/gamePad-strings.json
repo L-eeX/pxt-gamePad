@@ -1,3 +1,4 @@
 {
-	"gamePad.vibratorMotor|block": "震动电机|%index|"
+	"gamePad.vibratorMotor|block": "震动电机|%index|",
+	"gamePad.vibratorMotorIntensity|block": "震动电机 强度|%index|"
 }
