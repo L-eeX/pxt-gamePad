@@ -1,5 +1,5 @@
 /**
- * The pins used by SparkFun gamer:bit
+ * User Buttons for DFRobot gamer:bit Players.
  */
 //%
 enum GamerBitPin {
@@ -18,7 +18,7 @@ enum GamerBitPin {
 }
 
 /**
- * The event raised by the SparkFun gamer:bit pins
+ * Trigger Events Proposed by DFRobot gamer:bit Players.
  */
 //%
 enum GamerBitEvent {
@@ -31,26 +31,28 @@ enum GamerBitEvent {
 }
 
 /**
- * Functions to operate the SparkFun gamer:bit
+ * Functions for DFRobot gamer:bit Players.
  */
 //% weight=10 color=#DF6721 icon="\uf286" block="gamePad"
-namespace gamePad { 
+namespace gamePad {
+    let PIN_INIT = 0;
+    
     export enum Vibrator { 
         //% blockId="V0" block="stop"
         V0 = 0,
         //% blockId="V1" block="Vibration"
-        V1 = 1,     
+        V1 = 255,     
     }
 
     export enum Intensity { 
         //% blockId="I0" block="stop"
         I0 = 0,
         //% blockId="I1" block="weak"
-        I1 = 1,
+        I1 = 100,
         //% blockId="I2" block="medium"
-        I2 = 2,
+        I2 = 180,
         //% blockId="I3" block="strong"
-        I3 = 3
+        I3 = 225
     }
 
     export enum Led {
@@ -60,71 +62,44 @@ namespace gamePad {
         ON = 1
     }
 
-	/**
-	 * 
-	 */
+
     //% shim=gamerpad::init
     function init(): void {
         return;
     }
 
+    function PinInit(): void {
+        pins.setPull(DigitalPin.P1, PinPullMode.PullNone);
+        pins.setPull(DigitalPin.P2, PinPullMode.PullNone);
+        pins.setPull(DigitalPin.P8, PinPullMode.PullNone);
+        pins.setPull(DigitalPin.P13, PinPullMode.PullNone);
+        pins.setPull(DigitalPin.P14, PinPullMode.PullNone);
+        pins.setPull(DigitalPin.P15, PinPullMode.PullNone);
+        pins.setPull(DigitalPin.P0, PinPullMode.PullUp);
+        pins.setPull(DigitalPin.P16, PinPullMode.PullUp);
+        PIN_INIT = 1;
+        return;
+    }
+
+	/**
+	 * To scan a button whether be triggered : return '1' if pressed; return'0' if not.
+	 */
     //% weight=70
     //% blockId=gamePad_keyState block="gamerpad:bit|%button|is pressed"
     //% button.fieldEditor="gridpicker" button.fieldOptions.columns=3
     export function keyState(button: GamerBitPin): boolean {
-        let num = false;
-        switch (button) {
-            case GamerBitPin.P1: { 
-                pins.setPull(DigitalPin.P1, PinPullMode.PullNone);
-                if (0 == pins.digitalReadPin(DigitalPin.P1)) {
-                    num = true;
-                }
-                break;
-            }
-            case GamerBitPin.P2: { 
-                pins.setPull(DigitalPin.P2, PinPullMode.PullNone);
-                if (0 == pins.digitalReadPin(DigitalPin.P2)) {
-                    num = true;
-                }
-                break;
-            } 
-            case GamerBitPin.P8: { 
-                pins.setPull(DigitalPin.P8, PinPullMode.PullNone);
-                if (0 == pins.digitalReadPin(DigitalPin.P8)) {
-                    num = true;
-                }
-                break;
-            } 
-            case GamerBitPin.P13: { 
-                pins.setPull(DigitalPin.P13, PinPullMode.PullNone);
-                if (0 == pins.digitalReadPin(DigitalPin.P13)) {
-                    num = true;
-                }
-                break;
-            }
-            case GamerBitPin.P14: { 
-                pins.setPull(DigitalPin.P14, PinPullMode.PullNone);
-                if (0 == pins.digitalReadPin(DigitalPin.P14)) {
-                    num = true;
-                }
-                break;
-            } 
-            case GamerBitPin.P15: { 
-                pins.setPull(DigitalPin.P15, PinPullMode.PullNone);
-                if (0 == pins.digitalReadPin(DigitalPin.P15)) {
-                    num = true;
-                }
-                break;
-            }      
+        if (!PIN_INIT) { 
+            PinInit();
         }
-        pins.setPull(DigitalPin.P16, PinPullMode.PullNone);     
-
-
+        let num = false;
+        if (0 == pins.digitalReadPin(<number>button)) {
+            num = true;
+        }
         return num;
     }
 
 	/**
-	 * Registers code to run when a gamerpad:bit event is detected.
+	 * Registers code to run when a DFRobot gamer:bit event is detected.
 	 */
     //% weight=60
     //% blockGap=50
@@ -133,71 +108,60 @@ namespace gamePad {
     //% event.fieldEditor="gridpicker" event.fieldOptions.columns=3
     export function onEvent(button: GamerBitPin, event: GamerBitEvent, handler: Action) {
         init();
+        if (!PIN_INIT) { 
+            PinInit();
+        }
         control.onEvent(<number>button, <number>event, handler); // register handler
     }
 
+	/**
+	 * Vibrating motor switch.
+	 */
     //% weight=50
     //% blockId=gamePad_vibratorMotor block="Vibrator motor switch|%index|"
     //% index.fieldEditor="gridpicker" index.fieldOptions.columns=1
     export function vibratorMotor(index: Vibrator): void {
-        switch (index) { 
-            case Vibrator.V0: { 
-                vibratorMotorSpeed(0);
-                break;
-            }
-            case Vibrator.V1: {
-                vibratorMotorSpeed(255);
-                break;
-            }    
-        }
+        vibratorMotorSpeed(<number>index);
         return;
     }
 
+	/**
+	 * Vibration motor strength setting, weak, medium, strong, stop four options.
+	 */
     //% weight=40
     //% blockId=gamePad_vibratorMotorIntensity block="Vibrator motor intensity|%index|"
     //% index.fieldEditor="gridpicker" index.fieldOptions.columns=1
     export function vibratorMotorIntensity(index: Intensity): void {
-        switch (index) { 
-            case Intensity.I0: { 
-                vibratorMotorSpeed(0);
-                break;
-            }
-            case Intensity.I1: {
-                vibratorMotorSpeed(100);
-                break;
-            }
-            case Intensity.I2: {
-                vibratorMotorSpeed(150);
-                break;
-            }
-            case Intensity.I3: {
-                vibratorMotorSpeed(255);
-                break;
-            }    
-        }
+        vibratorMotorSpeed(<number>index);
         return;
     }
 
+	/**
+	 * Vibration motor speed setting, adjustable range 0~255.
+	 */
     //% weight=30
     //% blockGap=50
     //% blockId=gamePad_vibratorMotorSpeed block="Vibrator motor speed|%degree"
     //% degree.min=0 degree.max=255
     export function vibratorMotorSpeed(degree: number): void {
-        pins.setPull(DigitalPin.P0, PinPullMode.PullUp);
+        if (!PIN_INIT) { 
+            PinInit();
+        }
         let num = degree * 4;
-        pins.analogWritePin(AnalogPin.P12, num);
+        pins.analogWritePin(AnalogPin.P12, <number>num);
         return;
     }
 
+	/**
+	 * LED indicator light switch.
+	 */
     //% weight=20
     //% blockId=gamePad_led block="LED switch|%index|"
     //% index.fieldEditor="gridpicker" index.fieldOptions.columns=1
     export function led(index: Led): void {
-        pins.setPull(DigitalPin.P16, PinPullMode.PullUp);
-        if (index) {
-            pins.digitalWritePin(DigitalPin.P16, 1);
-        } else {
-            pins.digitalWritePin(DigitalPin.P16, 0);
-        } 
+        if (!PIN_INIT) { 
+            PinInit();
+        }
+        pins.digitalWritePin(DigitalPin.P16, <number>index);
     }
 }
