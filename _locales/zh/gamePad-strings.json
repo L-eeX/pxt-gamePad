@@ -1,6 +1,6 @@
 {
-	"GamerBitPin.P1|block": "P1 (X button)",
-	"GamerBitPin.P2|block": "P2 (Y button)",
+	"GamerBitPin.P1|block": "P1 (X 按钮)",
+	"GamerBitPin.P2|block": "P2 (Y 按钮)",
 	"GamerBitPin.P8|block": "P8 (D-PAD 上)",
 	"GamerBitPin.P13|block": "P13 (D-PAD 下)",
 	"GamerBitPin.P14|block": "P14 (D-PAD 左)",
@@ -18,8 +18,8 @@
 	"gamePad.Led.ON|block": "亮",
 	"gamePad.vibratorMotor|block": "震动电机 开关|%index|",
 	"gamePad.vibratorMotorIntensity|block": "震动电机 强度|%index|",
-	"gamePad.keyState|block": "检测按键|%button|是否被按下?",
-	"gamePad.onEvent|block": "选择按键%button|触发方式%event",
+	"gamePad.keyState|block": "检测按钮|%button|是否被按下?",
+	"gamePad.onEvent|block": "选择按钮%button|触发方式%event",
 	"gamePad.vibratorMotorSpeed|block": "震动电机 速度|%degree",
-	"gamePad.led|block": "LED |%index|"
+	"gamePad.led|block": "LED指示灯 |%index|"
 }
