@@ -81,9 +81,9 @@ namespace gamePad {
         return;
     }
 
-	/**
-	 * To scan a button whether be triggered : return '1' if pressed; return'0' if not.
-	 */
+    /**
+     * To scan a button whether be triggered : return '1' if pressed; return'0' if not.
+     */
     //% weight=70
     //% blockId=gamePad_keyState block="gamerpad:bit|%button|is pressed"
     //% button.fieldEditor="gridpicker" button.fieldOptions.columns=3
@@ -98,9 +98,9 @@ namespace gamePad {
         return num;
     }
 
-	/**
-	 * Registers code to run when a DFRobot gamer:bit event is detected.
-	 */
+    /**
+     * Registers code to run when a DFRobot gamer:bit event is detected.
+     */
     //% weight=60
     //% blockGap=50
     //% blockId=gamePad_onEvent block="gamerpad:bit on %button|%event"
@@ -114,9 +114,9 @@ namespace gamePad {
         control.onEvent(<number>button, <number>event, handler); // register handler
     }
 
-	/**
-	 * Vibrating motor switch.
-	 */
+    /**
+     * Vibrating motor switch.
+     */
     //% weight=50
     //% blockId=gamePad_vibratorMotor block="Vibrator motor switch|%index|"
     //% index.fieldEditor="gridpicker" index.fieldOptions.columns=1
@@ -125,9 +125,9 @@ namespace gamePad {
         return;
     }
 
-	/**
-	 * Vibration motor strength setting, weak, medium, strong, stop four options.
-	 */
+    /**
+     * Vibration motor strength setting, weak, medium, strong, stop four options.
+     */
     //% weight=40
     //% blockId=gamePad_vibratorMotorIntensity block="Vibrator motor intensity|%index|"
     //% index.fieldEditor="gridpicker" index.fieldOptions.columns=1
@@ -136,9 +136,9 @@ namespace gamePad {
         return;
     }
 
-	/**
-	 * Vibration motor speed setting, adjustable range 0~255.
-	 */
+    /**
+     * Vibration motor speed setting, adjustable range 0~255.
+     */
     //% weight=30
     //% blockGap=50
     //% blockId=gamePad_vibratorMotorSpeed block="Vibrator motor speed|%degree"
@@ -152,9 +152,9 @@ namespace gamePad {
         return;
     }
 
-	/**
-	 * LED indicator light switch.
-	 */
+    /**
+     * LED indicator light switch.
+     */
     //% weight=20
     //% blockId=gamePad_led block="LED switch|%index|"
     //% index.fieldEditor="gridpicker" index.fieldOptions.columns=1
