@@ -3,17 +3,17 @@
  */
 //%
 enum GamerBitPin {
-    //% block="P1 (X button)"
+    //% block="X button"
     P1 = <number>DAL.MICROBIT_ID_IO_P1,
-    //% block="P2 (Y button)"
+    //% block="Y button"
     P2 = <number>DAL.MICROBIT_ID_IO_P2,
-    //% block="P8 (D-PAD up)"
+    //% block="D-PAD up"
     P8 = <number>DAL.MICROBIT_ID_IO_P8,
-    //% block="P13 (D-PAD down)"
+    //% block="D-PAD down"
     P13 = <number>DAL.MICROBIT_ID_IO_P13,
-    //% block="P14 (D-PAD left)"
+    //% block="D-PAD left"
     P14 = <number>DAL.MICROBIT_ID_IO_P14,
-    //% block="P15 (D-PAD right)"
+    //% block="D-PAD right"
     P15 = <number>DAL.MICROBIT_ID_IO_P15,
 }
 
@@ -22,9 +22,9 @@ enum GamerBitPin {
  */
 //%
 enum GamerBitEvent {
-    //% block="down"
+    //% block="pressed"
     Down = DAL.MICROBIT_BUTTON_EVT_DOWN,
-    //% block="up"
+    //% block="released"
     Up = DAL.MICROBIT_BUTTON_EVT_UP,
     //% block="click"
     Click = DAL.MICROBIT_BUTTON_EVT_CLICK,
@@ -33,7 +33,7 @@ enum GamerBitEvent {
 /**
  * Functions for DFRobot gamer:bit Players.
  */
-//% weight=10 color=#DF6721 icon="\uf286" block="gamePad"
+//% weight=10 color=#DF6721 icon="\uf11b" block="gamePad"
 namespace gamePad {
     let PIN_INIT = 0;
     
@@ -85,7 +85,7 @@ namespace gamePad {
      * To scan a button whether be triggered : return '1' if pressed; return'0' if not.
      */
     //% weight=70
-    //% blockId=gamePad_keyState block="gamerpad:bit|%button|is pressed"
+    //% blockId=gamePad_keyState block="button|%button|is pressed"
     //% button.fieldEditor="gridpicker" button.fieldOptions.columns=3
     export function keyState(button: GamerBitPin): boolean {
         if (!PIN_INIT) { 
@@ -103,7 +103,7 @@ namespace gamePad {
      */
     //% weight=60
     //% blockGap=50
-    //% blockId=gamePad_onEvent block="gamerpad:bit on %button|%event"
+    //% blockId=gamePad_onEvent block="on button|%button|is %event"
     //% button.fieldEditor="gridpicker" button.fieldOptions.columns=3
     //% event.fieldEditor="gridpicker" event.fieldOptions.columns=3
     export function onEvent(button: GamerBitPin, event: GamerBitEvent, handler: Action) {
@@ -119,19 +119,8 @@ namespace gamePad {
      */
     //% weight=50
     //% blockId=gamePad_vibratorMotor block="Vibrator motor switch|%index|"
-    //% index.fieldEditor="gridpicker" index.fieldOptions.columns=1
+    //% index.fieldEditor="gridpicker" index.fieldOptions.columns=2
     export function vibratorMotor(index: Vibrator): void {
-        vibratorMotorSpeed(<number>index);
-        return;
-    }
-
-    /**
-     * Vibration motor strength setting, weak, medium, strong, stop four options.
-     */
-    //% weight=40
-    //% blockId=gamePad_vibratorMotorIntensity block="Vibrator motor intensity|%index|"
-    //% index.fieldEditor="gridpicker" index.fieldOptions.columns=1
-    export function vibratorMotorIntensity(index: Intensity): void {
         vibratorMotorSpeed(<number>index);
         return;
     }
@@ -141,7 +130,7 @@ namespace gamePad {
      */
     //% weight=30
     //% blockGap=50
-    //% blockId=gamePad_vibratorMotorSpeed block="Vibrator motor speed|%degree"
+    //% blockId=gamePad_vibratorMotorSpeed block="Vibrator motor intensity|%degree"
     //% degree.min=0 degree.max=255
     export function vibratorMotorSpeed(degree: number): void {
         if (!PIN_INIT) { 
@@ -156,8 +145,8 @@ namespace gamePad {
      * LED indicator light switch.
      */
     //% weight=20
-    //% blockId=gamePad_led block="LED switch|%index|"
-    //% index.fieldEditor="gridpicker" index.fieldOptions.columns=1
+    //% blockId=gamePad_led block="LED|%index|"
+    //% index.fieldEditor="gridpicker" index.fieldOptions.columns=2
     export function led(index: Led): void {
         if (!PIN_INIT) { 
             PinInit();
